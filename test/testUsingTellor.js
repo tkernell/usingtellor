@@ -56,14 +56,14 @@ contract('UsingTellor Tests', function(accounts) {
         await usingTellor.setOracleIDDescriptors(mappings.address);
     })
 
-    // it("Test add a lot of data to retreive old values wrong loop", async function(){
-    //     for(var i = 0;i <=10 ;i++){
-    //         for (var j = 1; j<=10 ; j ++)
-    //       await web3.eth.sendTransaction({to: oracle.address,from:accounts[0],gas:4000000,data:oracle2.methods.testAddData(1,j).encodeABI()})
-    //      }
-    //           let vars = await usingTellor.getDataBefore.call(1,20,1,0)
-    //      console.log(vars)
-    // })
+    it("Test add a lot of data to retreive old values wrong loop", async function(){
+        for(var i = 0;i <=10 ;i++){
+            for (var j = 1; j<=2 ; j ++)
+          await web3.eth.sendTransaction({to: oracle.address,from:accounts[0],gas:4000000,data:oracle2.methods.testAddData(1,j).encodeABI()})
+         }
+              let vars = await usingTellor.getDataBefore.call(1,20,1,0)
+         console.log(vars[1]*1)
+    })
 
 
 
@@ -89,9 +89,21 @@ contract('UsingTellor Tests', function(accounts) {
     //      let vars = await usingTellor.getDataBefore.call(1,10,1,0)
     //      console.log(vars)
     // })
+    it("Test getDataBefore with a lot of data", async function(){
+         //for(var i = 1;i <=4 ;i++){
+                await web3.eth.sendTransaction({to: oracle.address,from:accounts[0],gas:4000000,data:oracle2.methods.testAddData(1, 1).encodeABI()})
+            
+            //}
+            let vars = await usingTellor.getDataBefore.call(1,1,1,0)
+            console.log("vars",vars)
+        
+        //bool _ifRetrieve, uint256 _value, uint256 _timestampRetrieved
+        //assert(vars[0] == true, "ifRetreive is not true")
+        //assert(vars[1] == 1200, "Get last value should work")
+    })
 
     it("Test getCurrentValue", async function(){
-        for(var i = 0;i <=100 ;i++){
+        for(var i = 0;i <=4 ;i++){
           await web3.eth.sendTransaction({to: oracle.address,from:accounts[i],gas:4000000,data:oracle2.methods.submitMiningSolution("nonce",1, 1200).encodeABI()})
          }
         let vars = await usingTellor.getCurrentValue.call(1)

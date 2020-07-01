@@ -55,7 +55,7 @@ module.exports =async function(callback) {
     console.log("oracleIDDesc address:", oracleIDDesc.address)
     sleep_s(30)
 
-    await userContract.setOracleIDDescriptors(oracleIDDesc.address)
+    await usingTellor.setOracleIDDescriptors(oracleIDDesc.address)
     console.log("user contract setOracleIdDescriptors address")
     sleep_s(30)
     
@@ -83,9 +83,6 @@ module.exports =async function(callback) {
 
     await oracleIDDesc.defineTellorIdtoAdjFactor(tellorBtcid, adjFactor2)
     console.log("defineTellorIdtoGranularity")
-
-    await userContract.setPrice(web3.utils.toWei(".03","ether"))
-    console.log("userContract set Price ")
 
 
 process.exit()

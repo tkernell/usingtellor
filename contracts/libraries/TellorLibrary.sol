@@ -60,8 +60,8 @@ library TellorLibrary {
         //loop 10 times
         uint i;
         for (i = 1; i <= 10; i++) {
-        _request.requestTimestamps.push(_startTime + i);
-        _request.finalValues[_startTime+i]= _startTime+i;
+            _request.requestTimestamps.push(_startTime + i);
+            _request.finalValues[_startTime+i]= _startTime+i;
         }
     }
 
